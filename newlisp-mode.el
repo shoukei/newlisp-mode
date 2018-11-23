@@ -351,6 +351,7 @@ You can specify a script additional ARGS, if called with a prefix arg."
   (eval-when-compile
     `(("\\[text\\]\\(?:.\\|\n\\)*?\\[/text\\]" . font-lock-string-face)
       ("{[^{}]*?}" . font-lock-string-face)
+      (";.*[^}].*$" . font-lock-comment-face)
       (,(regexp-opt newlisp-primitive-keywords 'symbols) . font-lock-keyword-face)
       (,(regexp-opt newlisp-lambda-keywords 'symbols) . font-lock-function-name-face)
       ;;(,(regexp-opt '("nil" "true" "ostype") 'symbols)  . font-lock-constant-face)
@@ -432,6 +433,7 @@ You can specify a script additional ARGS, if called with a prefix arg."
     (modify-syntax-entry ?\} "){   " table)
     ;; COMMENT
     (modify-syntax-entry ?# "<   " table)
+    (modify-syntax-entry ?; ". 12" table)
     ;; ESCAPE
     ;;
     table))
